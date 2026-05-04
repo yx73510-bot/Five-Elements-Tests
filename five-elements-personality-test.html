@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Five Elements — Discover Your Nature</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fdfbf7;
+      --cream-deep: #f4efe6;
+      --ink: #2a2622;
+      --ink-soft: #5c5650;
+      --gold: #c5a076;
+      --gold-dim: rgba(197, 160, 118, 0.35);
+      --wood: #6b8f71;
+      --wood-soft: #a8c4a8;
+      --fire: #a63a2b;
+      --fire-soft: #d4786a;
+      --earth: #b89254;
+      --earth-soft: #d4b896;
+      --metal: #6b7078;
+      --metal-soft: #a8adb5;
+      --water: #2b4a6f;
+      --water-soft: #6a8caf;
+      --panel: rgba(255, 252, 248, 0.92);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    /* —— Welcome: ink-wash / shoujo —— */
+    #screen-welcome {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem 3rem;
+      position: relative;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% 0%, rgba(168, 196, 168, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 60% at 85% 70%, rgba(212, 120, 106, 0.08) 0%, transparent 45%),
+        radial-gradient(ellipse 70% 50% at 10% 80%, rgba(106, 140, 175, 0.1) 0%, transparent 50%),
+        var(--cream);
+    }
+
+    #screen-welcome::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    .constellation {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, var(--gold-dim), transparent),
+        radial-gradient(1px 1px at 78% 12%, var(--gold-dim), transparent),
+        radial-gradient(1px 1px at 88% 45%, var(--gold-dim), transparent),
+        radial-gradient(1px 1px at 22% 62%, var(--gold-dim), transparent),
+        radial-gradient(1px 1px at 55% 78%, var(--gold-dim), transparent),
+        radial-gradient(1px 1px at 40% 28%, var(--gold-dim), transparent);
+      opacity: 0.9;
+    }
+
+    .welcome-frame {
+      position: relative;
+      max-width: 28rem;
+      width: 100%;
+      padding: 3rem 2.25rem 2.75rem;
+      border: 1px solid var(--gold);
+      outline: 1px solid rgba(197, 160, 118, 0.45);
+      outline-offset: 6px;
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.5) 0%, rgba(253, 251, 247, 0.85) 100%);
+      box-shadow: 0 24px 60px rgba(42, 38, 34, 0.08);
+    }
+
+    .corner-flourish {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      border-color: var(--gold);
+      opacity: 0.7;
+    }
+    .corner-flourish.tl { top: 10px; left: 10px; border-top: 1px solid; border-left: 1px solid; }
+    .corner-flourish.tr { top: 10px; right: 10px; border-top: 1px solid; border-right: 1px solid; }
+    .corner-flourish.bl { bottom: 10px; left: 10px; border-bottom: 1px solid; border-left: 1px solid; }
+    .corner-flourish.br { bottom: 10px; right: 10px; border-bottom: 1px solid; border-right: 1px solid; }
+
+    .welcome-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .welcome-title {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: clamp(2.1rem, 6vw, 2.85rem);
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .welcome-title-cn {
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      text-align: center;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.12em;
+      font-style: italic;
+    }
+
+    .welcome-sub {
+      font-size: 1.05rem;
+      font-style: italic;
+      text-align: center;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      max-width: 16rem;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      font-family: inherit;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: linear-gradient(135deg, var(--ink) 0%, #3d3834 100%);
+      border: 1px solid var(--ink);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42, 38, 34, 0.18);
+    }
+
+    /* —— Quiz: simple, refined —— */
+    #screen-quiz {
+      display: none;
+      min-height: 100dvh;
+      padding: 1.75rem 1.25rem 3rem;
+      background: var(--cream-deep);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    #screen-quiz.active { display: block; }
+
+    .quiz-inner {
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(197, 160, 118, 0.45);
+    }
+
+    .quiz-header span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .progress-track {
+      height: 2px;
+      background: rgba(42, 38, 34, 0.12);
+      margin-bottom: 2rem;
+      border-radius: 1px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    .q-card {
+      background: var(--panel);
+      border: 1px solid rgba(197, 160, 118, 0.5);
+      padding: 1.75rem 1.5rem 1.5rem;
+      box-shadow: 0 4px 24px rgba(42, 38, 34, 0.06);
+    }
+
+    .q-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .q-text {
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      font-family: inherit;
+      font-size: 1.05rem;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid rgba(42, 38, 34, 0.18);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .opt:hover {
+      border-color: var(--gold);
+      background: rgba(253, 251, 247, 0.9);
+    }
+
+    .opt-yesno {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .opt-yesno .opt { flex: 1; text-align: center; }
+
+    .quiz-nav {
+      margin-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .btn-ghost {
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 0.6rem 0;
+      background: none;
+      border: none;
+      color: var(--ink-soft);
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .btn-ghost:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+
+    /* —— Cards reveal —— */
+    #screen-cards {
+      display: none;
+      min-height: 100dvh;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: var(--cream);
+      perspective: 1400px;
+    }
+
+    #screen-cards.active { display: flex; }
+
+    .cards-stage {
+      width: 100%;
+      max-width: 56rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(0.35rem, 1.5vw, 0.85rem);
+      flex-wrap: wrap;
+      transform-style: preserve-3d;
+    }
+
+    .element-card {
+      width: clamp(4.5rem, 14vw, 6.5rem);
+      height: clamp(7.5rem, 24vw, 11rem);
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), margin 0.7s ease, box-shadow 0.5s;
+      cursor: default;
+    }
+
+    .element-card .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+      font-size: clamp(0.65rem, 2vw, 0.8rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .element-card .back {
+      background:
+        linear-gradient(145deg, rgba(253, 251, 247, 0.95), rgba(244, 239, 230, 0.98)),
+        radial-gradient(circle at 50% 30%, var(--gold-dim), transparent 60%);
+      color: var(--gold);
+    }
+
+    .element-card .back::after {
+      content: "✦";
+      font-size: 1.2rem;
+      margin-top: 0.35rem;
+      opacity: 0.6;
+    }
+
+    .element-card .front {
+      transform: rotateY(180deg);
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .element-card[data-el="wood"] .front { background: linear-gradient(160deg, var(--wood), #4a6b52); }
+    .element-card[data-el="fire"] .front { background: linear-gradient(160deg, var(--fire), #7a2a22); }
+    .element-card[data-el="earth"] .front { background: linear-gradient(160deg, var(--earth), #8a6f3d); }
+    .element-card[data-el="metal"] .front { background: linear-gradient(160deg, var(--metal), #454950); }
+    .element-card[data-el="water"] .front { background: linear-gradient(160deg, var(--water), #1a3048); }
+
+    .element-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .cards-stage.spread .element-card {
+      margin: 0 clamp(0.15rem, 1vw, 0.5rem);
+      box-shadow: 0 12px 32px rgba(42, 38, 34, 0.12);
+    }
+
+    .cards-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      opacity: 0;
+      animation: fadeIn 1s ease 1.2s forwards;
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* —— Analysis —— */
+    #screen-result {
+      display: none;
+      min-height: 100dvh;
+      padding: 2rem 1.25rem 3.5rem;
+      background: var(--cream);
+    }
+
+    #screen-result.active { display: block; }
+
+    .result-inner {
+      max-width: 34rem;
+      margin: 0 auto;
+      border: 1px solid var(--gold);
+      outline: 1px solid rgba(197, 160, 118, 0.35);
+      outline-offset: 8px;
+      padding: 2rem 1.5rem 2.25rem;
+      background: var(--panel);
+    }
+
+    .result-badge {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-title {
+      text-align: center;
+      font-size: clamp(1.85rem, 5vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
+    }
+
+    .result-title-cn {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin-bottom: 1.75rem;
+      font-style: italic;
+    }
+
+    .result-block {
+      margin-bottom: 1.35rem;
+    }
+
+    .result-block h3 {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+    }
+
+    .result-block p {
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .result-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(42, 38, 34, 0.15);
+      border-radius: 2px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      font-style: italic;
+      color: var(--ink-soft);
+      position: relative;
+    }
+
+    .result-note::before {
+      content: "+";
+      position: absolute;
+      top: -0.65rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--panel);
+      padding: 0 0.5rem;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .result-extended {
+      margin-top: 2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(197, 160, 118, 0.45);
+    }
+
+    .result-extended h3 {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+      font-weight: 600;
+    }
+
+    .result-extended p {
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .result-extended p:last-child {
+      margin-bottom: 0;
+      color: var(--ink-soft);
+    }
+
+    .result-cta {
+      margin-top: 1.75rem;
+      padding: 1.25rem 1.2rem 1.35rem;
+      border: 1px solid rgba(197, 160, 118, 0.55);
+      background: rgba(253, 251, 247, 0.65);
+    }
+
+    .result-cta-lede {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+      color: var(--ink);
+    }
+
+    .result-cta ul {
+      margin: 0.75rem 0 1rem 1.1rem;
+      font-size: 1.02rem;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .result-cta ul li {
+      margin-bottom: 0.45rem;
+    }
+
+    .result-cta .result-cta-outro {
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 0.65rem;
+    }
+
+    .result-cta .result-cta-signoff {
+      font-size: 0.98rem;
+      line-height: 1.55;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .btn-restart {
+      margin-top: 2rem;
+      display: block;
+      width: 100%;
+      max-width: 14rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 480px) {
+      .cards-stage { gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="screen-welcome">
+    <div class="constellation" aria-hidden="true"></div>
+    <div class="welcome-frame">
+      <span class="corner-flourish tl" aria-hidden="true"></span>
+      <span class="corner-flourish tr" aria-hidden="true"></span>
+      <span class="corner-flourish bl" aria-hidden="true"></span>
+      <span class="corner-flourish br" aria-hidden="true"></span>
+      <p class="welcome-kicker">Discover your nature · Embrace your energy</p>
+      <h1 class="welcome-title">FIVE ELEMENTS</h1>
+      <p class="welcome-title-cn">Wu Xing · five phases of energy</p>
+      <p class="welcome-sub">A soft little quiz about how you move through real life — errands, group chats, Sunday scaries, all of it. No wrong answers, just patterns.</p>
+      <button type="button" class="btn-primary" id="btn-start">Begin</button>
+    </div>
+  </section>
+
+  <section id="screen-quiz">
+    <div class="quiz-inner">
+      <div class="quiz-header">
+        <span>Five Elements</span>
+        <span id="quiz-progress-label">1 / 30</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="q-card">
+        <p class="q-num" id="q-type-label">Single choice</p>
+        <p class="q-text" id="q-text"></p>
+        <div class="options" id="q-options"></div>
+      </div>
+      <div class="quiz-nav">
+        <button type="button" class="btn-ghost" id="btn-back" disabled>Back</button>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-cards" aria-live="polite">
+    <div class="cards-stage" id="cards-stage">
+      <div class="element-card" data-el="wood"><div class="face back">?</div><div class="face front">Wood</div></div>
+      <div class="element-card" data-el="fire"><div class="face back">?</div><div class="face front">Fire</div></div>
+      <div class="element-card" data-el="earth"><div class="face back">?</div><div class="face front">Earth</div></div>
+      <div class="element-card" data-el="metal"><div class="face back">?</div><div class="face front">Metal</div></div>
+      <div class="element-card" data-el="water"><div class="face back">?</div><div class="face front">Water</div></div>
+    </div>
+    <p class="cards-hint" id="cards-hint"></p>
+  </section>
+
+  <section id="screen-result">
+    <div class="result-inner">
+      <p class="result-badge">Your reading</p>
+      <h2 class="result-title" id="result-title"></h2>
+      <p class="result-title-cn" id="result-tagline"></p>
+      <div id="result-body"></div>
+      <button type="button" class="btn-primary btn-restart" id="btn-restart">Take it again</button>
+    </div>
+  </section>
+
+  <script>
+    const ELEMENTS = ["wood", "fire", "earth", "metal", "water"];
+    const ELEMENT_LABEL = {
+      wood: { en: "Wood", tag: "Growth & new beginnings" },
+      fire: { en: "Fire", tag: "Passion & momentum" },
+      earth: { en: "Earth", tag: "Nurture & presence" },
+      metal: { en: "Metal", tag: "Clarity & standards" },
+      water: { en: "Water", tag: "Flow & intuition" }
+    };
+
+    /** 15 single-choice — each option has { el, t }; order is randomized per run */
+    const QUESTIONS_MC = [
+      { text: "Sunday night hits and Monday is tomorrow. Your default mode is…", options: [
+        { el: "wood", t: "Already curious what the week might bring — low-key excited for something new." },
+        { el: "fire", t: "Big feelings: either hype-planning your week or spiraling in the group chat." },
+        { el: "earth", t: "Steady: laundry, snacks, making your space feel okay for Future You." },
+        { el: "metal", t: "Inbox zero fantasy: calendar, tasks, anything to feel mentally lined up." },
+        { el: "water", t: "Soft shutdown: bath, show, phone on silent — you ride the vibe down." }
+      ]},
+      { text: "You went to Target “for one thing.” Realistically you…", options: [
+        { el: "wood", t: "Wander into home / plants / random cute aisles — something catches your eye." },
+        { el: "fire", t: "Cart chaos: candles, socks, something sparkly you absolutely needed." },
+        { el: "earth", t: "Grab extras you know your roommate / partner / cat will appreciate." },
+        { el: "metal", t: "White-knuckle discipline: self-checkout in under ten minutes, pride intact." },
+        { el: "water", t: "Float the store slowly, forget half your list, still leave oddly peaceful." }
+      ]},
+      { text: "After-work Pilates gets cancelled last minute. You…", options: [
+        { el: "wood", t: "Try a new YouTube class or walk a different route — novelty fixes the itch." },
+        { el: "fire", t: "Pivot to drinks / voice memos / something social and loud." },
+        { el: "earth", t: "Cook something warm, FaceTime someone, nurture mode activated." },
+        { el: "metal", t: "Use the time: tidy, emails, life-admin — weirdly energizing." },
+        { el: "water", t: "Take the win: shower, podcast, no guilt about skipping movement." }
+      ]},
+      { text: "The group chat is picking brunch. Your energy is…", options: [
+        { el: "wood", t: "“There’s this new place…” — you like being the one with fresh ideas." },
+        { el: "fire", t: "Bottomless vibes, loud tables, somewhere with a scene." },
+        { el: "earth", t: "You’re thinking dietary needs, reservations, who’s stressed about money." },
+        { el: "metal", t: "You find the spot, book it, send the map pin — done." },
+        { el: "water", t: "Honestly fine with whatever — you’ll read the room when you get there." }
+      ]},
+      { text: "You walk into Sephora for mascara only. What happens?", options: [
+        { el: "wood", t: "You chat with staff, swatch something new, leave inspired (and bagged)." },
+        { el: "fire", t: "Full beat trial energy — you came for one thing, leave story-ready." },
+        { el: "earth", t: "Repurchase holy grails, maybe one sensible treat for a friend." },
+        { el: "metal", t: "Surgical strike: grab, pay, no detours — you respect your own time." },
+        { el: "water", t: "You touch textures, zone out at skincare, time becomes abstract." }
+      ]},
+      { text: "Solo airport delay: three hours, nowhere to be. You…", options: [
+        { el: "wood", t: "Explore the terminal like a museum — shops, people, little adventures." },
+        { el: "fire", t: "Post about it, find wine, make friends with whoever’s at the gate." },
+        { el: "earth", t: "Snacks for the group later, comfy corner, check on people you love." },
+        { el: "metal", t: "Laptop open: emails, slides, anything that makes you feel ahead." },
+        { el: "water", t: "Book, window seat, gentle people-watching — you’re in your lane." }
+      ]},
+      { text: "Trader Joe’s on Sunday: the line is out the door. You…", options: [
+        { el: "wood", t: "Seasonal drops are calling — you’ll wait for the mini tote drama." },
+        { el: "fire", t: "Coffee first, line second, complain-laugh the whole way — still worth it." },
+        { el: "earth", t: "Patient basket energy: you’re feeding your week, it’s almost meditative." },
+        { el: "metal", t: "Hard pivot — you’ll come back Tuesday at 8 a.m. with a list." },
+        { el: "water", t: "Shrug, queue playlist, let the line move you like a lazy river." }
+      ]},
+      { text: "Your friend has been venting about her boss for forty minutes. You…", options: [
+        { el: "wood", t: "Brainstorm options — new jobs, scripts, little experiments she could try." },
+        { el: "fire", t: "Match her energy: validate the rage, caps lock in spirit." },
+        { el: "earth", t: "Practical care: food delivery link, “come over,” hold the container." },
+        { el: "metal", t: "One clean takeaway: what’s true, what’s next, what’s not her fault." },
+        { el: "water", t: "Mostly listen — you’re the pond, not the advice column (unless asked)." }
+      ]},
+      { text: "SoulCycle / spin waitlist drama. Your move?", options: [
+        { el: "wood", t: "Try a new instructor, new studio — novelty keeps you showing up." },
+        { el: "fire", t: "Front row or nothing — you need the lights and the scream-singing." },
+        { el: "earth", t: "Same 6 a.m. crew, same bike — ritual > hype for you." },
+        { el: "metal", t: "If the schedule shifts, you cancel cleanly — no sunk-cost guilt." },
+        { el: "water", t: "You ride whatever morning your body offers — no rigid streak stress." }
+      ]},
+      { text: "Skincare TikTok says you need a twelve-step routine. You…", options: [
+        { el: "wood", t: "Curious: you’ll try two new steps and see what sticks." },
+        { el: "fire", t: "The viral serum is in your cart before the video ends." },
+        { el: "earth", t: "You trust what already works — maybe one gentle upgrade." },
+        { el: "metal", t: "Ingredients, studies, dermatologist threads — you want logic, not hype." },
+        { el: "water", t: "You actually simplify — less feels more honest for your skin." }
+      ]},
+      { text: "Group trip: the Airbnb thread is chaos. You…", options: [
+        { el: "wood", t: "Vote for a neighborhood you’ve never stayed in — adventure points." },
+        { el: "fire", t: "Proximity to nightlife / beach / action — you’re not hiding in the suburbs." },
+        { el: "earth", t: "Big kitchen, comfy common space — the hang matters more than the view." },
+        { el: "metal", t: "Spreadsheet, pros/cons, one clear recommendation — bless the chat." },
+        { el: "water", t: "You defer to the vibe majority — peace > being “right.”" }
+      ]},
+      { text: "“Hungover but productive” Sunday. Real version of you…", options: [
+        { el: "wood", t: "Farmers market stroll, something pretty, gentle motion." },
+        { el: "fire", t: "Hair-of-the-dog brunch, loud table, main-character recovery." },
+        { el: "earth", t: "Soup, couch, one friend — low stimulation, high comfort." },
+        { el: "metal", t: "Laundry, groceries, inbox — weirdly resets your brain." },
+        { el: "water", t: "No plan: nap, water, whatever your body asks for — zero performance." }
+      ]},
+      { text: "Working from a coffee shop for the afternoon. You pick…", options: [
+        { el: "wood", t: "Window seat — you like watching the street change." },
+        { el: "fire", t: "Communal table — buzz, overheard convos, social electricity." },
+        { el: "earth", t: "Cozy corner booth — nest, charger, your little headquarters." },
+        { el: "metal", t: "Quiet wall + outlet — function over aesthetic (mostly)." },
+        { el: "water", t: "Back sofa, low profile — you disappear into focus when needed." }
+      ]},
+      { text: "Book club meets and you didn’t finish the book. You…", options: [
+        { el: "wood", t: "Steer the convo toward themes you’re genuinely curious about." },
+        { el: "fire", t: "Honest chaos — you make it funny, the night still pops off." },
+        { el: "earth", t: "You bring wine / cheese / the thing that saves the vibe anyway." },
+        { el: "metal", t: "Speed-skim + SparkNotes energy — you’ll contribute something coherent." },
+        { el: "water", t: "You let other people carry — you’re happy in listener mode." }
+      ]},
+      { text: "Networking thing with name tags. Your social strategy…", options: [
+        { el: "wood", t: "Real questions about people’s paths — you’re actually interested." },
+        { el: "fire", t: "Big smile, big energy — you’ll work the room if you have to." },
+        { el: "earth", t: "Warm intros, connecting people who should know each other." },
+        { el: "metal", t: "Polished pitch, clean handshake — efficient humaning." },
+        { el: "water", t: "One or two deep convos at the edges — quality over quantity." }
+      ]}
+    ];
+
+    /** 15 yes/no — yes/no element mapping may be swapped randomly per run */
+    const QUESTIONS_YN = [
+      { text: "You’d rather rewatch a comfort show than start something brand new.", yes: "water", no: "wood" },
+      { text: "You have a budget app you actually open more than once a month.", yes: "metal", no: "fire" },
+      { text: "You send voice memos when a text would take forever.", yes: "fire", no: "metal" },
+      { text: "You meal prep on Sundays even when you’re tired — ritual over mood.", yes: "earth", no: "water" },
+      { text: "You read the comments (or reviews) before you post or buy.", yes: "metal", no: "fire" },
+      { text: "When you’re stressed, you’d rather eat out than cook at home.", yes: "fire", no: "earth" },
+      { text: "You screenshot birthdays / anniversaries so you don’t forget.", yes: "earth", no: "metal" },
+      { text: "You tear up at airline holiday ads and you’re not embarrassed.", yes: "water", no: "metal" },
+      { text: "You color-code the shared Google Calendar (or wish you could).", yes: "metal", no: "wood" },
+      { text: "You say yes to plans first and check your social battery later.", yes: "fire", no: "water" },
+      { text: "Your Starbucks / coffee order is basically a bit at this point.", yes: "fire", no: "earth" },
+      { text: "You feel guilty resting unless the to-do list is “handled.”", yes: "metal", no: "water" },
+      { text: "You love a themed party with a real dress code.", yes: "fire", no: "earth" },
+      { text: "You open twenty browser tabs before booking a hotel.", yes: "metal", no: "wood" },
+      { text: "You’d skip a workout for extra sleep without spiraling about it.", yes: "water", no: "fire" }
+    ];
+
+    const COPY = {
+      wood: {
+        personality: "You’re the one who grows toward light — curious, open, a little restless in a good way. You like beginnings: new routines, new corners of the city, new versions of yourself you’re trying on.",
+        temperament: "Your mood lifts when there’s something to explore. You can get scattered when everything feels equally interesting, but you rarely stay bored for long.",
+        abilities: "You connect dots, start conversations, and bring fresh energy into stuck rooms. People lean on you when they want ideas, not just logistics.",
+        pros: "Adaptable, hopeful, socially alive — you make normal weeks feel less gray.",
+        cons: "Shiny-object risk, starting more than you finish, decision fatigue when options explode.",
+        care: "Give yourself one anchor habit (sleep, walk, whatever) so your curiosity has a home base. You don’t have to chase every new thing to stay “you.”"
+      },
+      fire: {
+        personality: "You run warm — passion, opinions, presence. You feel life in HD: the brunch, the crush, the rant, the playlist. You’re not built for beige.",
+        temperament: "High highs, sometimes sharp lows. You react fast, forgive fast (usually), and you’d rather feel something real than feel nothing.",
+        abilities: "You hype people up, make plans happen, and turn random Tuesday into a story. Momentum is your love language.",
+        pros: "Brave, expressive, fun as hell — you remind people they’re alive.",
+        cons: "Burnout, impulsive texts, the occasional drama tax when you’re running hot.",
+        care: "Build cool-down rituals that aren’t punishment — walk, journal, solo drive. Your fire isn’t the problem; pacing is the kind friend move."
+      },
+      earth: {
+        personality: "You’re the soft center — nurturing without being a martyr (most days). You notice who’s overwhelmed, who’s hungry, who needs a ride. Home isn’t always a place; sometimes it’s you.",
+        temperament: "Steadier than you get credit for. You don’t need constant novelty if the vibe is right — good food, good people, good lighting.",
+        abilities: "You hold groups together, remember the little things, and make spaces feel safe. Logistics + heart is a rare combo.",
+        pros: "Loyal, warm, emotionally generous — people trust you with their real stuff.",
+        cons: "Over-giving, absorbing everyone’s mood, forgetting to ask what *you* need.",
+        care: "Boundary isn’t a dirty word. Empty cup = cranky earth. Protect your evenings like they matter — because they do."
+      },
+      metal: {
+        personality: "You like clarity — standards, truth, clean edges. You’re not cold; you’re edited. You respect competence, including your own, and nonsense taxes you.",
+        temperament: "Calm on the surface, sharp underneath. You do better with structure than with chaos-for-the-aesthetic.",
+        abilities: "You cut through noise, organize messes, and say the one sentence that fixes the group chat spiral.",
+        pros: "Reliable, honest, disciplined — when you commit, people stop worrying.",
+        cons: "Rigid streak, self-criticism, sometimes reading “relax” as “lose control.”",
+        care: "Schedule play on purpose — silly movie, no-goal coffee, bad dancing. Precision is a gift; softness keeps it human."
+      },
+      water: {
+        personality: "You read rooms like a language. Intuitive, observant, a little mysterious even to yourself. You’d rather flow around a problem than headbutt it — not weakness, strategy.",
+        temperament: "You need space to feel your actual feelings. Crowded calendars and loud obligations can make you go quiet before you go gone.",
+        abilities: "You listen for real, adapt fast, and pick up emotional weather changes before other people name them.",
+        pros: "Wise without preaching, flexible, emotionally deep in a low-key way.",
+        cons: "Avoidance when things get confrontational, indecision, disappearing into your phone / head.",
+        care: "Name one need out loud per week — tiny practice, huge shift. Your softness is strength when it’s chosen, not only reactive."
+      }
+    };
+
+    /** Per-element “snapshot” copy; shared CTA below is identical for all types. */
+    const RESULT_BRIDGE_HTML = {
+      wood: `
+        <div class="result-extended">
+          <h3>Snapshot</h3>
+          <p>Your results read like a <strong>classic Wood-type personality</strong> — growth-forward, idea-rich, always leaning toward the next beginning.</p>
+          <p>In five-element energy, people with this pattern often show up as <strong>curious, hopeful, and quick to try</strong> — but it’s also easy to wobble when <strong>your attention splinters across too many “maybe” paths</strong>, and feel <strong>restless or quietly guilty for not “committing” yet</strong>, or in <strong>work and friendships</strong> get read as <strong>a little scattered or hard to pin down</strong> — even when your intentions are solid.</p>
+          <p>None of that means you’re the problem. It usually means you haven’t been shown how to <strong>balance your emotional energy</strong> without clipping the part of you that needs to grow.</p>
+        </div>`,
+      fire: `
+        <div class="result-extended">
+          <h3>Snapshot</h3>
+          <p>Your results read like a <strong>classic Fire-type personality</strong> — warm, expressive, and alive in a way that doesn’t do “muted.”</p>
+          <p>In five-element energy, people with this pattern often bring <strong>spark, courage, and emotional honesty</strong> — but it’s also easy to wobble when <strong>you run hot for too long without brakes</strong>, and feel <strong>wired-tired, regret-heavy, or “why did I make that a whole thing?”</strong>, or in <strong>conflict and group settings</strong> come across as <strong>intense or “a lot”</strong> — even when you’re simply feeling everything at full volume.</p>
+          <p>That’s not a moral failing. Most of the time you just haven’t learned how to <strong>balance your emotional temperature</strong> without dimming your light.</p>
+        </div>`,
+      earth: `
+        <div class="result-extended">
+          <h3>Snapshot</h3>
+          <p>Your results read like a <strong>classic Earth-type personality</strong> — nurturing, loyal, the person who quietly keeps the room human.</p>
+          <p>In five-element energy, people with this pattern often shine as <strong>warm, dependable, and emotionally generous</strong> — but it’s also easy to wobble when <strong>you absorb everyone else’s stress like it’s your job</strong>, and feel <strong>empty, resentful, or oddly invisible</strong>, or in <strong>partnerships and family</strong> get read as <strong>too accommodating or unclear about what you actually want</strong> — even when you’re trying to keep the peace.</p>
+          <p>That doesn’t mean you’re “too soft.” It usually means no one modeled how to <strong>balance your emotional load</strong> without losing your center.</p>
+        </div>`,
+      metal: `
+        <div class="result-extended">
+          <h3>Snapshot</h3>
+          <p>Your results read like a <strong>classic Metal-type personality</strong> — clear standards, strong spine, allergic to nonsense.</p>
+          <p>In five-element energy, people with this pattern often show up as <strong>structured, honest, and high-integrity</strong> — but it’s also easy to wobble when <strong>things get messy and your inner critic turns the volume up</strong>, and feel <strong>stuck, brittle, or quietly harsh with yourself</strong>, or in <strong>career and responsibility</strong> get read as <strong>cold or overly critical</strong> — even when you’re mostly trying to keep everything from falling apart.</p>
+          <p>That’s not because you’re unkind. It usually means you haven’t been taught how to <strong>balance your emotional pressure</strong> without confusing control with safety.</p>
+        </div>`,
+      water: `
+        <div class="result-extended">
+          <h3>Snapshot</h3>
+          <p>Your results read like a <strong>classic Water-type personality</strong> — intuitive, adaptable, emotionally deep in a low-key way.</p>
+          <p>In five-element energy, people with this pattern often bring <strong>wisdom, flexibility, and real listening</strong> — but it’s also easy to wobble when <strong>you dodge hard edges a beat too long</strong>, and feel <strong>foggy, lonely in a crowd, or stuck in your head</strong>, or in <strong>dating, family, and big life choices</strong> come across as <strong>distant or hard to read</strong> — even when you care more than you show.</p>
+          <p>None of that means you’re closed off. It usually means you haven’t practiced how to <strong>balance your inner world</strong> without disappearing behind it.</p>
+        </div>`
+    };
+
+    const RESULT_CTA_HTML = `
+        <div class="result-cta">
+          <p class="result-cta-lede">A quiz can only help you <strong>meet yourself</strong>. If you want answers that actually plug into real life — for example:</p>
+          <ul>
+            <li><strong>How to use your natural traits at work</strong> and sidestep the kind of burnout that doesn’t even feel noble.</li>
+            <li><strong>What partner “energy” tends to complement yours</strong> so love feels easier, not like homework.</li>
+            <li>Other <strong>specific situations</strong> you keep bumping into — communication, boundaries, routines, all the unsexy stuff.</li>
+          </ul>
+          <p class="result-cta-outro">We’ve put together <strong>Your Personal Energy Formula</strong> — practical guidance for <strong>life, communication, and career</strong> that’s mapped to your element pattern (not generic horoscope fluff).</p>
+          <p class="result-cta-signoff">For about the <strong>price of a coffee</strong>, it’s a small swap toward a lifestyle that feels more <strong>honest and self-aligned</strong>. Totally optional — your type is already real without buying anything.</p>
+        </div>`;
+
+    let step = 0;
+    const answers = [];
+
+    function shuffleInPlace(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    /** New deck each time: shuffled question order, shuffled MC options, random Y/N element swap. */
+    function buildQuizDeck() {
+      const mc = QUESTIONS_MC.map((q) => ({
+        type: "mc",
+        text: q.text,
+        options: shuffleInPlace(q.options.map((o) => ({ el: o.el, t: o.t })))
+      }));
+      const yn = QUESTIONS_YN.map((q) => {
+        let yes = q.yes;
+        let no = q.no;
+        if (Math.random() < 0.5) {
+          const t = yes;
+          yes = no;
+          no = t;
+        }
+        return { type: "yn", text: q.text, yes, no };
+      });
+      return shuffleInPlace([...mc, ...yn]);
+    }
+
+    let QUIZ = [];
+
+    const welcome = document.getElementById("screen-welcome");
+    const quiz = document.getElementById("screen-quiz");
+    const cards = document.getElementById("screen-cards");
+    const result = document.getElementById("screen-result");
+    const qText = document.getElementById("q-text");
+    const qOptions = document.getElementById("q-options");
+    const qTypeLabel = document.getElementById("q-type-label");
+    const progressFill = document.getElementById("progress-fill");
+    const progressLabel = document.getElementById("quiz-progress-label");
+    const btnBack = document.getElementById("btn-back");
+    const cardsStage = document.getElementById("cards-stage");
+    const cardsHint = document.getElementById("cards-hint");
+
+    function showScreen(which) {
+      welcome.style.display = which === "welcome" ? "" : "none";
+      quiz.classList.toggle("active", which === "quiz");
+      cards.classList.toggle("active", which === "cards");
+      result.classList.toggle("active", which === "result");
+    }
+
+    function renderQuestion() {
+      const q = QUIZ[step];
+      const total = QUIZ.length;
+      progressLabel.textContent = `${step + 1} / ${total}`;
+      progressFill.style.width = `${((step + 1) / total) * 100}%`;
+      btnBack.disabled = step === 0;
+
+      if (q.type === "mc") {
+        qTypeLabel.textContent = "Single choice";
+        qText.textContent = q.text;
+        qOptions.innerHTML = "";
+        q.options.forEach((opt, idx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "opt";
+          b.textContent = opt.t;
+          b.dataset.el = opt.el;
+          b.addEventListener("click", () => advance({ type: "mc", el: opt.el }));
+          qOptions.appendChild(b);
+        });
+      } else {
+        qTypeLabel.textContent = "Yes / No";
+        qText.textContent = q.text;
+        qOptions.innerHTML = "";
+        const row = document.createElement("div");
+        row.className = "opt-yesno";
+        const yes = document.createElement("button");
+        yes.type = "button";
+        yes.className = "opt";
+        yes.textContent = "Yes";
+        yes.addEventListener("click", () => advance({ type: "yn", choice: "yes", q: QUIZ[step] }));
+        const no = document.createElement("button");
+        no.type = "button";
+        no.className = "opt";
+        no.textContent = "No";
+        no.addEventListener("click", () => advance({ type: "yn", choice: "no", q: QUIZ[step] }));
+        row.appendChild(yes);
+        row.appendChild(no);
+        qOptions.appendChild(row);
+      }
+    }
+
+    function advance(payload) {
+      if (payload.type === "mc") {
+        answers[step] = payload.el;
+      } else {
+        const q = payload.q;
+        answers[step] = payload.choice === "yes" ? q.yes : q.no;
+      }
+      step++;
+      if (step >= QUIZ.length) {
+        finishQuiz();
+        return;
+      }
+      renderQuestion();
+    }
+
+    function scoreAnswers() {
+      const scores = { wood: 0, fire: 0, earth: 0, metal: 0, water: 0 };
+      answers.forEach((el) => { if (scores[el] !== undefined) scores[el]++; });
+      let best = "wood";
+      ELEMENTS.forEach((e) => {
+        if (scores[e] > scores[best]) best = e;
+      });
+      const tied = ELEMENTS.filter((e) => scores[e] === scores[best]);
+      if (tied.length > 1) {
+        const order = ["water", "wood", "fire", "earth", "metal"];
+        best = order.find((e) => tied.includes(e)) || best;
+      }
+      return { winner: best, scores };
+    }
+
+    function finishQuiz() {
+      showScreen("cards");
+      const { winner } = scoreAnswers();
+      cardsStage.classList.remove("spread");
+      document.querySelectorAll(".element-card").forEach((c) => {
+        c.classList.remove("flipped");
+      });
+      cardsHint.textContent = "";
+      cardsHint.style.opacity = "0";
+      void cardsStage.offsetWidth;
+      requestAnimationFrame(() => {
+        cardsStage.classList.add("spread");
+      });
+      setTimeout(() => {
+        cardsHint.textContent = "Watch the cards…";
+        cardsHint.style.animation = "none";
+        cardsHint.offsetHeight;
+        cardsHint.style.animation = "fadeIn 1s ease forwards";
+      }, 400);
+      setTimeout(() => {
+        const card = cardsStage.querySelector(`.element-card[data-el="${winner}"]`);
+        if (card) card.classList.add("flipped");
+        cardsHint.textContent = "There you are.";
+      }, 2200);
+      setTimeout(() => showAnalysis(winner), 4200);
+    }
+
+    function showAnalysis(winner) {
+      showScreen("result");
+      const L = ELEMENT_LABEL[winner];
+      document.getElementById("result-title").textContent = L.en + " Energy";
+      document.getElementById("result-tagline").textContent = L.tag;
+      const c = COPY[winner];
+      const body = document.getElementById("result-body");
+      body.innerHTML = `
+        <div class="result-block"><h3>Vibe / personality</h3><p>${c.personality}</p></div>
+        <div class="result-block"><h3>Temperament</h3><p>${c.temperament}</p></div>
+        <div class="result-block"><h3>What you’re good at</h3><p>${c.abilities}</p></div>
+        <div class="result-block"><h3>Strengths</h3><p>${c.pros}</p></div>
+        <div class="result-block"><h3>Shadow side</h3><p>${c.cons}</p></div>
+        <div class="result-note">${c.care}</div>
+        ${RESULT_BRIDGE_HTML[winner]}
+        ${RESULT_CTA_HTML}
+      `;
+    }
+
+    document.getElementById("btn-start").addEventListener("click", () => {
+      step = 0;
+      answers.length = 0;
+      QUIZ = buildQuizDeck();
+      cardsStage.classList.remove("spread");
+      document.querySelectorAll(".element-card").forEach((c) => c.classList.remove("flipped"));
+      cardsHint.textContent = "";
+      cardsHint.style.opacity = "0";
+      showScreen("quiz");
+      renderQuestion();
+    });
+
+    btnBack.addEventListener("click", () => {
+      if (step === 0) return;
+      step--;
+      answers.pop();
+      renderQuestion();
+    });
+
+    document.getElementById("btn-restart").addEventListener("click", () => {
+      step = 0;
+      answers.length = 0;
+      cardsStage.classList.remove("spread");
+      document.querySelectorAll(".element-card").forEach((c) => c.classList.remove("flipped"));
+      cardsHint.textContent = "";
+      cardsHint.style.opacity = "0";
+      showScreen("welcome");
+    });
+  </script>
+</body>
+</html>
